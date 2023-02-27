@@ -1,5 +1,9 @@
 # Riparian Vegetation Effects on Aquatic Macroinvertebrates
 
-Hypothesis:
+Hypothesis: 
 
 Data Description:
+
+Citations:
+
+Signature and Team Name: 
