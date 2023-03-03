@@ -16,3 +16,4 @@ Team Members from __(Aquatic Nerds)__:
 
 Jonathan Ray
 Callie Wallace 
+Chelsey burks
