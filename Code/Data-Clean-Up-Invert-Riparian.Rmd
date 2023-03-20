@@ -9,14 +9,37 @@ output: pdf_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-```{r}
+```{r packages}
 library(dplyr)
 library(tidyr)
 library(ggplot2)
 ```
 
-Lets look at both data sets and try to combine them into one set
 
-```{r}
+```{r datasets}
+
+```
+
+```{r combined}
+
+```
+
+```{r histogram}
+
+```
+
+```{r grouping}
+
+```
+
+```{r visualization}
+
+```
+
+```{r second vis}
+
+```
+
+```{r stats}
 
 ```
