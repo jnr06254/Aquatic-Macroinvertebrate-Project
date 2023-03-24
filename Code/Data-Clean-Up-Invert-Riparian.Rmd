@@ -16,7 +16,19 @@ library(ggplot2)
 ```
 
 
-```{r datasets}
+```{r datasets Jonathan}
+model11 <- read.csv("../data/processed/D08 MAYF/NEON.D08.MAYF.DP1.20120.001.inv_taxonomyProcessed.2017-03.expanded.20221122T184129Z.csv")
+
+
+```
+
+```{r dataset Callie}
+model21 <- read.csv("../data/processed/D17 BIGC/ ")
+
+```
+
+```{r datasets Chelsey}
+model31 <- read.csv("../data/processed/D18 OKSR/ ")
 
 ```
 
