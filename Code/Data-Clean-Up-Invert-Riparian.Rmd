@@ -33,7 +33,25 @@ model27 <- read.csv("../data/processed/D17 BIGC/NEON.D17.BIGC.DP1.20191.001.rip_
 ```
 
 ```{r datasets Chelsey}
-model31 <- read.csv("../data/processed/D18 OKSR/ ")
+model31 <- read.csv("../data/processed/D18 OKSR/NEON.D18.OKSR.DP1.20120.001.inv_taxonomyProcessed.2017-07.expanded.20221122T171622Z.csv")
+s
+model32 <- read.csv("../data/processed/D18 OKSR/NEON.D18.OKSR.DP1.20120.001.inv_taxonomyProcessed.2018-07.expanded.20221128T182544Z.csv")
+
+moedl33 <- read.csv("../data/processed/D18 OKSR/NEON.D18.OKSR.DP1.20120.001.inv_taxonomyProcessed.2019-07.expanded.20221128T174721Z.csv")
+
+model34 <- read.csv("../data/processed/D18 OKSR/NEON.D18.OKSR.DP1.20120.001.inv_taxonomyProcessed.2020-07.expanded.20221128T220306Z.csv")
+
+model35 <- read.csv("../data/processed/D18 OKSR/NEON.D18.OKSR.DP1.20120.001.inv_taxonomyProcessed.2021-07.expanded.20221129T222833Z.csv")
+
+model36 <- read.csv("../data/processed/D18 OKSR/NEON.D18.OKSR.DP1.20191.001.rip_percentComposition.2017-07.basic.20230112T002307Z.csv")
+
+model37 <- read.csv("../data/processed/D18 OKSR/NEON.D18.OKSR.DP1.20191.001.rip_percentComposition.2019-07.basic.20230112T001757Z.csv")
+
+mnodel38 <- read.csv("../data/processed/D18 OKSR/NEON.D18.OKSR.DP1.20191.001.rip_percentComposition.2021-07.basic.20230112T002024Z.csv")
+
+model39 <- read.csv("../data/processed/D18 OKSR/NEON.D18.OKSR.DP1.20191.001.rip_percentComposition.2022-07.basic.20230112T001943Z.csv")
+
+
 
 ```
 
