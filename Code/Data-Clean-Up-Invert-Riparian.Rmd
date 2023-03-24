@@ -17,22 +17,19 @@ library(ggplot2)
 
 
 ```{r datasets Jonathan}
-model11 <- read.csv("../data/processed/D08 MAYF/NEON.D08.MAYF.DP1.20120.001.inv_taxonomyProcessed.2017-07.expanded.20221122T184910Z.csv")
-model12 <- read.csv("../data/processed/D08 MAYF/NEON.D08.MAYF.DP1.20120.001.inv_taxonomyProcessed.2018-07.expanded.20221128T184824Z.csv")
-model13 <- read.csv("../data/processed/D08 MAYF/NEON.D08.MAYF.DP1.20120.001.inv_taxonomyProcessed.2019-07.expanded.20221128T173134Z.csv")
-model14 <- read.csv("../data/processed/D08 MAYF/NEON.D08.MAYF.DP1.20120.001.inv_taxonomyProcessed.2020-07.expanded.20221128T212351Z.csv")
-model15 <- read.csv("../data/processed/D08 MAYF/NEON.D08.MAYF.DP1.20120.001.inv_taxonomyProcessed.2021-07.expanded.20221129T232348Z.csv")
-model16 <- read.csv("../data/processed/D08 MAYF/NEON.D08.MAYF.DP1.20191.001.rip_percentComposition.2017-08.basic.20230112T002045Z.csv")
-model17 <- read.csv("../data/processed/D08 MAYF/NEON.D08.MAYF.DP1.20191.001.rip_percentComposition.2018-08.basic.20230112T002023Z.csv")
-model18 <- read.csv("../data/processed/D08 MAYF/NEON.D08.MAYF.DP1.20191.001.rip_percentComposition.2019-08.basic.20230112T001825Z.csv")
-model19 <- read.csv("../data/processed/D08 MAYF/NEON.D08.MAYF.DP1.20191.001.rip_percentComposition.2021-08.basic.20230112T002158Z.csv")
-model110 <- read.csv("../data/processed/D08 MAYF/NEON.D08.MAYF.DP1.20191.001.rip_percentComposition.2022-08.basic.20230112T002125Z.csv")
+model11 <- read.csv("../data/processed/D08 MAYF/NEON.D08.MAYF.DP1.20120.001.inv_taxonomyProcessed.2017-03.expanded.20221122T184129Z.csv")
+
 
 ```
 
 ```{r dataset Callie}
-model21 <- read.csv("../data/processed/D17 BIGC/ ")
-
+model21 <- read.csv("../data/processed/D17 BIGC/NEON.D17.BIGC.DP1.20120.001.inv_taxonomyProcessed.2018-07.expanded.20221128T191616Z.csv")
+model22 <- read.csv("../data/processed/D17 BIGC/NEON.D17.BIGC.DP1.20120.001.inv_taxonomyProcessed.2019-07.expanded.20221128T162452Z 2.csv")
+model23 <- read.csv("../data/processed/D17 BIGC/NEON.D17.BIGC.DP1.20120.001.inv_taxonomyProcessed.2021-07.expanded.20221129T222632Z.csv")
+model24 <- read.csv("../data/processed/D17 BIGC/NEON.D17.BIGC.DP1.20191.001.rip_percentComposition.2018-07.basic.20230112T002002Z.csv")
+model25 <- read.csv("../data/processed/D17 BIGC/NEON.D17.BIGC.DP1.20191.001.rip_percentComposition.2019-07.basic.20230112T002213Z.csv")
+model26 <- read.csv("../data/processed/D17 BIGC/NEON.D17.BIGC.DP1.20191.001.rip_percentComposition.2021-08.basic.20230112T001807Z.csv")
+model27 <- read.csv("../data/processed/D17 BIGC/NEON.D17.BIGC.DP1.20191.001.rip_percentComposition.2021-08.basic.20230112T001807Z.csv")
 ```
 
 ```{r datasets Chelsey}
