@@ -68,12 +68,11 @@ all_riparian_year <- all_riparian %>%
   select("siteID", "canopyCoverPercent", "year")
 combined_data <- left_join(all_macroinvert_year,all_riparian_year, by = c("siteID","year")) %>% 
   relocate(year, .before = siteID)
+
 ```
 
 ```{r histogram}
-combined_data %>%
-  ggplot(aes(x=canopyCoverPercent))+
-  geom_histogram()
+
 
 ```
 
