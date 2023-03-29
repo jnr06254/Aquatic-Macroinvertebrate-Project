@@ -55,7 +55,7 @@ data36 <- read.csv("../data/processed/D18 OKSR/NEON.D18.OKSR.DP1.20191.001.rip_p
 
 data37 <- read.csv("../data/processed/D18 OKSR/NEON.D18.OKSR.DP1.20191.001.rip_percentComposition.2019-07.basic.20230112T001757Z.csv")
 
-mnodel38 <- read.csv("../data/processed/D18 OKSR/NEON.D18.OKSR.DP1.20191.001.rip_percentComposition.2021-07.basic.20230112T002024Z.csv")
+data38 <- read.csv("../data/processed/D18 OKSR/NEON.D18.OKSR.DP1.20191.001.rip_percentComposition.2021-07.basic.20230112T002024Z.csv")
 
 data39 <- read.csv("../data/processed/D18 OKSR/NEON.D18.OKSR.DP1.20191.001.rip_percentComposition.2022-07.basic.20230112T001943Z.csv")
 
