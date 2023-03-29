@@ -72,7 +72,7 @@ combined_data <- left_join(all_macroinvert_year,all_riparian_year, by = c("siteI
 
 ```{r histogram}
 combined_data %>%
-  ggplot(aes(x=genus))+
+  ggplot(aes(x=canopyCoverPercent))+
   geom_histogram()
 
 ```
