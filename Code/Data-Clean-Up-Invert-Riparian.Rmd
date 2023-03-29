@@ -13,6 +13,8 @@ knitr::opts_chunk$set(echo = TRUE)
 library(dplyr)
 library(tidyr)
 library(ggplot2)
+library(lubridate)
+library(readr)
 ```
 
 
@@ -42,27 +44,30 @@ data27 <- read.csv("../data/processed/D17 BIGC/NEON.D17.BIGC.DP1.20191.001.rip_p
 
 ```{r datasets Chelsey}
 data31 <- read.csv("../data/processed/D18 OKSR/NEON.D18.OKSR.DP1.20120.001.inv_taxonomyProcessed.2017-07.expanded.20221122T171622Z.csv")
-
 data32 <- read.csv("../data/processed/D18 OKSR/NEON.D18.OKSR.DP1.20120.001.inv_taxonomyProcessed.2018-07.expanded.20221128T182544Z.csv")
-
-moedl33 <- read.csv("../data/processed/D18 OKSR/NEON.D18.OKSR.DP1.20120.001.inv_taxonomyProcessed.2019-07.expanded.20221128T174721Z.csv")
-
+data33 <- read.csv("../data/processed/D18 OKSR/NEON.D18.OKSR.DP1.20120.001.inv_taxonomyProcessed.2019-07.expanded.20221128T174721Z.csv")
 data34 <- read.csv("../data/processed/D18 OKSR/NEON.D18.OKSR.DP1.20120.001.inv_taxonomyProcessed.2020-07.expanded.20221128T220306Z.csv")
-
 data35 <- read.csv("../data/processed/D18 OKSR/NEON.D18.OKSR.DP1.20120.001.inv_taxonomyProcessed.2021-07.expanded.20221129T222833Z.csv")
-
 data36 <- read.csv("../data/processed/D18 OKSR/NEON.D18.OKSR.DP1.20191.001.rip_percentComposition.2017-07.basic.20230112T002307Z.csv")
-
 data37 <- read.csv("../data/processed/D18 OKSR/NEON.D18.OKSR.DP1.20191.001.rip_percentComposition.2019-07.basic.20230112T001757Z.csv")
-
 data38 <- read.csv("../data/processed/D18 OKSR/NEON.D18.OKSR.DP1.20191.001.rip_percentComposition.2021-07.basic.20230112T002024Z.csv")
-
 data39 <- read.csv("../data/processed/D18 OKSR/NEON.D18.OKSR.DP1.20191.001.rip_percentComposition.2022-07.basic.20230112T001943Z.csv")
 
 ```
 
 ```{r combined}
-
+all_macroinvert <- bind_rows(data11,data12,data13,data14,data15,data21,data22,data23,data31,data32,data33,data34,data35)
+all_macroinvert_year <- all_macroinvert %>% 
+  mutate(year = floor_date(as.Date(collectDate), unit = "year")) %>% 
+  group_by(siteID, year) %>% 
+  select("siteID", "genus", "year")
+all_riparian <- bind_rows(data16,data17,data18,data19,data110,data24,data25,data26,data27,data36,data37,data38,data39)
+all_riparian_year <- all_riparian %>% 
+  mutate(year = floor_date(as.Date(startDate), unit = "year")) %>% 
+  group_by(siteID, year) %>% 
+  select("siteID", "canopyCoverPercent", "year")
+combined_data <- left_join(all_macroinvert_year,all_riparian_year, by = c("siteID","year")) %>% 
+  relocate(year, .before = siteID)
 
 ```
 
