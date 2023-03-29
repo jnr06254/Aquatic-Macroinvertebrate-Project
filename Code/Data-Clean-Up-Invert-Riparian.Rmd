@@ -77,6 +77,9 @@ combined_data <- left_join(all_macroinvert_year,all_riparian_year, by = c("siteI
 ```
 
 ```{r grouping}
+combined_data_group <- combined_data %>% 
+  group_by(siteID, year) %>% 
+  summarise(species.richness = unique(length(genus)), cover.average = mean(canopyCoverPercent))
 
 ```
 
