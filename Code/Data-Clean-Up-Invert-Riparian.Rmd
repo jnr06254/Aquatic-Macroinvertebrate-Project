@@ -86,6 +86,10 @@ combined_data_group <- combined_data %>%
 ```
 
 ```{r visualization}
+combined_data_group %>% 
+  ggplot(aes(x = cover.average, y = species.richness)) +
+  geom_point(aes(color = combined_data_group$siteID)) +
+  geom_smooth(method = "lm", color = "black")
 
 ```
 
