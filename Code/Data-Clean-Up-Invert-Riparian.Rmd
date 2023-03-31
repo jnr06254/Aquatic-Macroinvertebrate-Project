@@ -94,9 +94,18 @@ combined_data_group %>%
 ```
 
 ```{r second vis}
+combined_data_group$year_character <- as.character(combined_data_group$year)
+combined_data_group %>%
+  drop_na() %>% 
+  group_by(siteID, year_character) %>% 
+  ggplot(aes(x = siteID, y = species.richness, fill = year_character)) +
+  geom_col(position = "dodge")
 
 ```
 
 ```{r stats}
+model_test <- lm(species.richness ~ cover.average, data = combined_data_group)
+summary(model_test)
+plot(model_test) 
 
 ```
