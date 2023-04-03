@@ -92,7 +92,7 @@ combined_data_group %>%
   geom_smooth(method = "lm", color = "black")
 
 ```
-
+Figure 1: This visualization shows a comparison of species richness (y-axis) and canopy coverage (x-axis). The three sites shown ,in differing colors, compare the coverage and the species richness by year. The pattern shows that those sites with more canopy cover have a higher richness in aquatic macroinvertebrates. 
 ```{r second vis}
 combined_data_group$year_character <- as.character(combined_data_group$year)
 combined_data_group %>%
