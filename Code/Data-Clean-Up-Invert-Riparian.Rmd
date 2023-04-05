@@ -114,7 +114,8 @@ summary(model_test) #
 plot(model_test) 
 
 ```
-Our Null hypothesis that percent cover has no true effect on species richness of macroinvertbrate species. The P-value is 0.296, which is significantly greater than 0.05 so we fail to reject our null hypothesis. the R squared value is incredibly small, indicating there is very little correlation between average percent coverage, species richness of macroinvertabrates.
+Our Null hypothesis is that percent cover has no true effect on species richness of macroinvertebrate species. The P-value is 0.296, which is much greater than our alpha value of 0.05, so we fail to reject our null hypothesis. The R squared value is also incredibly small, indicating there is very little correlation between our average percent coverage and species richness of aquatic macroinvertebrates.
+
 ```{r third vis}
 combined_data_group$year_character <- as.character(combined_data_group$year) #same as line 102
 combined_data_group %>%
@@ -123,3 +124,4 @@ combined_data_group %>%
   ggplot(aes(x = siteID, y = cover.average, fill = year_character)) +
   geom_col(position = "dodge") #bar plot of cover.average grouped by siteID and year
 ```
+Figure 3: A bar graph of average canopy cover (y-axis) grouped by site (x-axis) and year (bar color). Higher bars represent large amounts of average canopy cover such that the Alaska site (OKSR) had very little to no tree cover. Not all sites had a 2017 or a 2021 recording, but all three sites had similar average percent canopy cover across all three years. 
