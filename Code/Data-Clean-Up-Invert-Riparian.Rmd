@@ -96,7 +96,7 @@ combined_data_group %>%
   geom_smooth(method = "lm", color = "black") #adding linear regression line
 
 ```
-Figure 1: This visualization shows a comparison of species richness (y-axis) and canopy coverage (x-axis). The three sites shown ,in differing colors, compare the coverage and the species richness by year. The pattern shows that those sites with more canopy cover have a higher richness in aquatic macroinvertebrates. 
+Figure 1: This visualization shows a comparison of species richness (y-axis) and canopy coverage (x-axis). The three sites shown ,in differing colors, compare the coverage and the species richness by year. The pattern shows that those sites with more canopy cover have a higher richness in aquatic macro-invertebrates. 
 
 ```{r second vis}
 combined_data_group$year_character <- as.character(combined_data_group$year) #changing variable type to character to improve aesthetic
@@ -107,7 +107,7 @@ combined_data_group %>%
   geom_col(position = "dodge") #bar plot of species richness grouped by site and year 
 
 ```
-
+Figure 2: On the x-axis of this figure the three sites are labeled and colored by year, and the y-axis is aquatic macro-invertebrates richness. Each color signifies the year the data was collected. The pattern shows that in Upper Big Creek (BIGC) there was an increase in richness, Mayfield Creek had a decrease in richness, and Oksrukuyik Creek had no change in richness.  
 ```{r stats}
 model_test <- lm(species.richness ~ cover.average, data = combined_data_group) #establishing linear regression model test for species.richness predicted by cover.average
 summary(model_test) #
