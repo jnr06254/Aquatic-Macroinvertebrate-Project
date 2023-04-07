@@ -2,7 +2,9 @@
 title: "Data-Clean-Up-Invert-Riparian"
 author: "Jonathan Ray, Callie Wallace, Chelsey Burks"
 date: "2023-02-27"
-output: pdf_document
+output:
+  word_document: default
+  pdf_document: default
 ---
 
 ```{r setup, include=FALSE}
