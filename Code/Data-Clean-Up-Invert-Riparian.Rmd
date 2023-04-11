@@ -2,7 +2,9 @@
 title: "Data-Clean-Up-Invert-Riparian"
 author: "Jonathan Ray, Callie Wallace, Chelsey Burks"
 date: "2023-02-27"
-output: pdf_document
+output:
+  word_document: default
+  pdf_document: default
 ---
 
 ```{r setup, include=FALSE}
@@ -16,6 +18,7 @@ library(tidyr)
 library(ggplot2)
 library(lubridate)
 library(readr)
+
 ```
 
 
@@ -60,17 +63,17 @@ data39 <- read.csv("../data/processed/D18 OKSR/NEON.D18.OKSR.DP1.20191.001.rip_p
 ```
 
 ```{r combined}
-all_macroinvert <- bind_rows(data11,data12,data13,data14,data15,data21,data22,data23,data31,data32,data33,data34,data35) #combining all macroinvertebrate data into one data frame
+all_macroinvert <- bind_rows(data11,data12,data13,data14,data15,data21,data22,data23,data31,data32,data33,data34,data35) #combining all macroinvertebrate data into one data frame for further merging
 all_macroinvert_year <- all_macroinvert %>% 
-  mutate(year = floor_date(as.Date(collectDate), unit = "year")) %>% #Collapsing collectDate into a year column
+  mutate(year = floor_date(as.Date(collectDate), unit = "year")) %>% #Collapsing collectDate into a year column in order to merge by date
   group_by(siteID, year) %>% 
   select("siteID", "genus", "year") #removing unneeded columns
-all_riparian <- bind_rows(data16,data17,data18,data19,data110,data24,data25,data26,data27,data36,data37,data38,data39) #combining all riparian data into one data frame
+all_riparian <- bind_rows(data16,data17,data18,data19,data110,data24,data25,data26,data27,data36,data37,data38,data39) #combining all riparian data into one data frame for further merging
 all_riparian_year <- all_riparian %>% 
   mutate(year = floor_date(as.Date(startDate), unit = "year")) %>% #Same as line 65
   group_by(siteID, year) %>% 
   select("siteID", "canopyCoverPercent", "year") #Same as line 67
-combined_data <- left_join(all_macroinvert_year,all_riparian_year, by = c("siteID","year")) %>% #Joining macroinvertebrate data and riparian data into a single data frame based on shared siteID and year
+combined_data <- left_join(all_macroinvert_year,all_riparian_year, by = c("siteID","year")) %>% #Joining macroinvertebrate data and riparian data into a single data frame based on shared siteID and year for analysis
   relocate(year, .before = siteID) #moving year column before siteID to improve aesthetic
 
 ```
@@ -78,14 +81,18 @@ combined_data <- left_join(all_macroinvert_year,all_riparian_year, by = c("siteI
 ```{r histogram}
 combined_data %>% 
   ggplot(aes(x=canopyCoverPercent)) +
-  geom_histogram() #ggplot histogram of count data for canopy cover percent 
-
+  geom_histogram() #ggplot histogram of count data for canopy cover percent to determine distribution of variable
+combined_data %>% 
+  group_by(siteID,year) %>% 
+  summarise(richness = unique(length(genus))) %>% 
+  ggplot(aes(x = richness)) +
+  geom_histogram() #ggplot histogram of count data for species richness to examine distribution of variable
 ```
 
 ```{r grouping}
 combined_data_group <- combined_data %>% 
   group_by(siteID, year) %>% 
-  summarise(species.richness = unique(length(genus)), cover.average = mean(canopyCoverPercent)) #creating species richness and average canopy cover per site per year
+  summarise(species.richness = unique(length(genus)), cover.average = mean(canopyCoverPercent)) #creating species richness and average canopy cover per site per year. Since species richness is measured for the entire year, average canopy cover must be calculated as well.
 
 ```
 
@@ -93,32 +100,36 @@ combined_data_group <- combined_data %>%
 combined_data_group %>% 
   ggplot(aes(x = cover.average, y = species.richness)) +
   geom_point(aes(color = combined_data_group$siteID)) + #adding in data points to scatter
-  geom_smooth(method = "lm", color = "black") #adding linear regression line
+  geom_smooth(method = "lm", color = "black") #adding linear regression line to display our test
 
 ```
 Figure 1: This visualization shows a comparison of species richness (y-axis) and canopy coverage (x-axis). The three sites shown ,in differing colors, compare the coverage and the species richness by year. The pattern shows that those sites with more canopy cover have a higher richness in aquatic macro-invertebrates. 
 
 ```{r second vis}
-combined_data_group$year_character <- as.character(combined_data_group$year) #changing variable type to character to improve aesthetic
+combined_data_group$year_character <- as.character(combined_data_group$year) #changing variable type to character to improve aesthetic of bar color
 combined_data_group %>%
-  drop_na() %>% #removing years with no recordings
+  drop_na() %>% #removing years with no recordings to remove extra spaces
   group_by(siteID, year_character) %>% 
   ggplot(aes(x = siteID, y = species.richness, fill = year_character)) + 
-  geom_col(position = "dodge") #bar plot of species richness grouped by site and year 
+  geom_col(position = "dodge") #bar plot of species richness grouped by site and year to make sure they are similar across years for the same site
 
 ```
-Figure 2: On the x-axis of this figure the three sites are labeled and colored by year, and the y-axis is aquatic macro-invertebrates richness. Each color signifies the year the data was collected. The pattern shows that in Upper Big Creek (BIGC) there was an increase in richness, Mayfield Creek had a decrease in richness, and Oksrukuyik Creek had no change in richness.  
+Figure 2: On the x-axis of this figure, three sites are labeled and colored by year, and the y-axis is aquatic macro-invertebrates richness. Each color signifies the year the data was collected. The pattern shows that in Upper Big Creek (BIGC) there was an increase in richness, Mayfield Creek had a decrease in richness, and Oksrukuyik Creek had no change in richness.  
+
 ```{r stats}
 model_test <- lm(species.richness ~ cover.average, data = combined_data_group) #establishing linear regression model test for species.richness predicted by cover.average
-summary(model_test) #
-plot(model_test) 
+summary(model_test) #print out of summary for analysis
+plot(model_test) #plots for model assumptions
 
 ```
+Our Null hypothesis is that percent cover has no true effect on species richness of macroinvertebrate species. The P-value is 0.296, which is much greater than our alpha value of 0.05, so we fail to reject our null hypothesis. The R squared value is also incredibly small, indicating there is very little correlation between our average percent coverage and species richness of aquatic macroinvertebrates. Based on our plots, some assumptions appear to be violated. Examing the Q-Q plot, residuals do not appear to be normally distributed while the residual plot appears to show a roughly linear relationship between species richness and average canopy cover. Finally, the scale-location plot shows that the variance of the model residuals were not the same for all values. 
+
 ```{r third vis}
 combined_data_group$year_character <- as.character(combined_data_group$year) #same as line 102
 combined_data_group %>%
   drop_na() %>% #same as 104
   group_by(siteID, year_character) %>% 
   ggplot(aes(x = siteID, y = cover.average, fill = year_character)) +
-  geom_col(position = "dodge") #bar plot of cover.average grouped by siteID and year
+  geom_col(position = "dodge") #bar plot of cover.average grouped by siteID and year to make sure average canopy cover was similar across sampled years for each site
 ```
+Figure 3: A bar graph of average canopy cover (y-axis) grouped by site (x-axis) and year (bar color). Higher bars represent large amounts of average canopy cover where the Alaska site (OKSR) had very little to no tree cover. Not all sites had a 2017 or a 2021 recording, but all three sites had similar average percent canopy cover across all three years. 
