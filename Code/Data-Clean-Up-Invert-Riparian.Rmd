@@ -100,8 +100,11 @@ combined_data_group <- combined_data %>%
 combined_data_group %>% 
   ggplot(aes(x = cover.average, y = species.richness)) +
   geom_point(aes(color = combined_data_group$siteID)) + #adding in data points to scatter
-  geom_smooth(method = "lm", color = "black") #adding linear regression line to display our test
-
+  geom_smooth(method = "lm", color = "black") + #adding linear regression line to display our test 
+  xlab("Average Percent Canopy Cover") +
+  ylab("Species Richness") +
+  guides(color = guide_legend(title = "Site"))
+  
 ```
 Figure 1: This visualization shows a comparison of species richness (y-axis) and canopy coverage (x-axis). The three sites shown ,in differing colors, compare the coverage and the species richness by year. The pattern shows that those sites with more canopy cover have a higher richness in aquatic macro-invertebrates. 
 
@@ -111,7 +114,9 @@ combined_data_group %>%
   drop_na() %>% #removing years with no recordings to remove extra spaces
   group_by(siteID, year_character) %>% 
   ggplot(aes(x = siteID, y = species.richness, fill = year_character)) + 
-  geom_col(position = "dodge") #bar plot of species richness grouped by site and year to make sure they are similar across years for the same site
+  geom_col(position = "dodge") + #bar plot of species richness grouped by site and year to make sure they are similar across years for the same site
+  xlab("Site") +
+  ylab("Species Richness")
 
 ```
 Figure 2: On the x-axis of this figure, three sites are labeled and colored by year, and the y-axis is aquatic macro-invertebrates richness. Each color signifies the year the data was collected. The pattern shows that in Upper Big Creek (BIGC) there was an increase in richness, Mayfield Creek had a decrease in richness, and Oksrukuyik Creek had no change in richness.  
@@ -130,6 +135,8 @@ combined_data_group %>%
   drop_na() %>% #same as 104
   group_by(siteID, year_character) %>% 
   ggplot(aes(x = siteID, y = cover.average, fill = year_character)) +
-  geom_col(position = "dodge") #bar plot of cover.average grouped by siteID and year to make sure average canopy cover was similar across sampled years for each site
+  geom_col(position = "dodge") + #bar plot of cover.average grouped by siteID and year to make sure average canopy cover was similar across sampled years for each site
+  xlab("Site") +
+  ylab("Average Percent Canopy Cover")
 ```
 Figure 3: A bar graph of average canopy cover (y-axis) grouped by site (x-axis) and year (bar color). Higher bars represent large amounts of average canopy cover where the Alaska site (OKSR) had very little to no tree cover. Not all sites had a 2017 or a 2021 recording, but all three sites had similar average percent canopy cover across all three years. 
